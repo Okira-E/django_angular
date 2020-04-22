@@ -1,0 +1,20 @@
+<form id="container">
+  <div class="form-wrap">
+    <h1>Login</h1>
+    <p>It's free and only takes a minute</p>
+    <form (ngSubmit)="login(input)" #input="ngForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input ngModel email required type="email" name="email" id="email" placeholder="example@email.com"/>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input ngModel required minlength="6" type="password" name="password" id="password" placeholder="Something Secret"/>
+      </div>
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
+  <footer>
+    <p>Don't have an account?<a routerLink="/register"> Sign Up Here</a></p>
+  </footer>
+</form>
