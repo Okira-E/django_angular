@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 
-class UserManager(BaseUserManager, PermissionsMixin):
+class UserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -20,8 +20,8 @@ class UserManager(BaseUserManager, PermissionsMixin):
             raise ValueError('Password is too short')
 
     def create_superuser(self, email, password):
-        if not email or not password:
-            raise ValueError("Both an Email and a Password must be provided")
+        # if not email or not password:
+        #     raise ValueError("Both an Email and a Password must be provided")
 
         user = self.create_user(
             email=self.normalize_email(email),
@@ -33,14 +33,13 @@ class UserManager(BaseUserManager, PermissionsMixin):
         return user
 
 
-
-
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     first_name  = models.CharField(max_length=255)
     last_name   = models.CharField(max_length=255)
     email       = models.EmailField(max_length=255, unique=True)
     is_active   = models.BooleanField(default=True)
     is_staff    = models.BooleanField(default=False)
+    timestamp   = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
 
