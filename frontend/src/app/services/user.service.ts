@@ -8,7 +8,6 @@ import {LoginUser, RegisterUser} from '../models/user.model';
 })
 export class UserService {
   private url: string = "http://0.0.0.0:8000";
-  // private url: string = "http://localhost:8000";
 
   constructor(private http: HttpClient) {
   }
