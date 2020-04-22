@@ -2,20 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2e35b7a-0b8b-494d-a821-c7b8e8029692" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/users/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/junk/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/junk/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/junk/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/backend2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/users/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/users/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/users/seriaizers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/users/seriaizers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +200,7 @@
       <option name="presentableId" value="Default" />
       <updated>1587542492706</updated>
       <workItem from="1587542494963" duration="2505000" />
-      <workItem from="1587545925833" duration="11093000" />
+      <workItem from="1587545925833" duration="16242000" />
     </task>
     <servers />
   </component>
