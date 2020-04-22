@@ -1,4 +1,4 @@
-#!/home/okira/Desktop/projects/django_angular/backend/venv/bin/python
+#!/home/okira/Desktop/projects/django_angular/backend2/venv/bin/python
 from django.core import management
 
 if __name__ == "__main__":
