@@ -19,8 +19,8 @@ export class RegisterComponent implements OnInit {
 
   registerUser(form: NgForm) {
     const user: RegisterUser = {
-      firstName: form.value.fname,
-      lastName: form.value.lname,
+      first_name: form.value.fname,
+      last_name: form.value.lname,
       email: form.value.email,
       password: form.value.password,
     };

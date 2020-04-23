@@ -2,15 +2,14 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 
+
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, password=None, **extra_fields):
-        if not email:
-            raise ValueError("Email is missing")
-
+    def create_user(self, first_name, last_name,  email, password=None):
         user = self.model(
+            first_name=first_name,
+            last_name=last_name,
             email=self.normalize_email(email),
-            **extra_fields
         )
         if len(password) > 5:
             user.set_password(password)
@@ -20,12 +19,9 @@ class UserManager(BaseUserManager):
             raise ValueError('Password is too short')
 
     def create_superuser(self, email, password):
-        # if not email or not password:
-        #     raise ValueError("Both an Email and a Password must be provided")
-
         user = self.create_user(
             email=self.normalize_email(email),
-            password=password
+            password=password,
         )
         user.is_staff = True
         user.is_superuser = True
@@ -46,7 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name} ({self.id})"
 
     def get_is_staff(self):
         return self.is_staff
