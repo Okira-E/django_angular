@@ -9,6 +9,7 @@ import {UserService} from '../services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public passwordError: string;
 
   constructor(private userService: UserService) {
   }
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
       password: form.value.password
     };
     if (form.invalid) {
-      return; // todo return error to the user
+      return;
     }
 
     this.userService.loginUser(user);

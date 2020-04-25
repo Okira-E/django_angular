@@ -9,9 +9,10 @@
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input ngModel required minlength="6" type="password" name="password" id="password" placeholder="Something Secret"/>
+        <input class="space" ngModel required minlength="6" type="password" name="password" id="password" placeholder="Something Secret"/>
+        <div class="error-message">{{passwordError}}</div>
       </div>
-      <button type="submit" class="btn">Login</button>
+      <button type="submit" class="btn space">Login</button>
     </form>
   </div>
   <footer>

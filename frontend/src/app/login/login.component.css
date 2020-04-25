@@ -15,6 +15,16 @@ a {
   color: #2e8fc7;
 }
 
+.space {
+  margin: 10px 0 10px 0;
+}
+
+.error-message {
+  margin-top: 4px;
+  color: #f00;
+  font-size: 1rem;
+}
+
 .btn {
   display: block;
   margin-top: 15px;

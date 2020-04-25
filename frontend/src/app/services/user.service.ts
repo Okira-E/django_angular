@@ -13,13 +13,14 @@ export class UserService {
   }
 
   registerUser(user: RegisterUser) {
-    this.http.post<{ message: string }>(`${this.url}/api/users/register/`, user)
+    this.http.post<{ token: string }>(`${this.url}/api/users/register/`, user)
       .subscribe(res => {
         console.log(res);
       });
   }
 
   loginUser(user: LoginUser) {
-    console.log(user);
+    this.http.post(`${this.url}/api/users/login/`, user)
+      .subscribe(res => console.log(res));
   }
 }
