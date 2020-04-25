@@ -1,0 +1,32 @@
+.post-conatiner {
+    margin: auto;
+    margin-top: 50px;
+    width: 550px;
+    height: 270px;
+    background-color: #1F1F1F;
+    box-shadow: 0 10px #f58d42;
+}
+
+.form-group {
+    padding: 20px;
+    color: #f58d42
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.3em;
+}
+
+.form-group input {
+    margin-top: 5px;
+    padding: 7px;
+    width: 97%;
+}
+
+.local-btn {
+    float: right;
+    margin-right: 40px;
+    padding: 15px 25px 15px 25px;
+    border: none;
+    border-radius: 0;
+}

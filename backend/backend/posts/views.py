@@ -16,15 +16,14 @@ class PostAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateM
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
-    # doesn't create the post for the authenticated user, raises an error
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
             serializer.save(user=self.request.user)
-
-    def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
 
 
 # /api/posts/{id}

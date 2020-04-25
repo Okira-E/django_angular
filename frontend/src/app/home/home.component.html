@@ -1,1 +1,13 @@
-<p>home works!</p>
+<div class="post-conatiner">
+    <form (ngSubmit)="createPost(input)" #input='ngForm'>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" ngModel required name="title" id="title" placeholder="When is it happening?">
+        </div>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <input type="text" ngModel required name="content" id="content" placeholder="What's on your mind?">
+        </div>
+        <button class="btn local-btn" type="submit">Submit</button>
+    </form>
+</div>
