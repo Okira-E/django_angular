@@ -1,4 +1,4 @@
-.post-conatiner {
+.post-create-conatiner {
     margin: auto;
     margin-top: 50px;
     width: 550px;
@@ -8,7 +8,7 @@
 }
 
 .form-group {
-    padding: 20px;
+    padding: 15px 15px 10px 15px;
     color: #f58d42
 }
 
@@ -19,8 +19,14 @@
 
 .form-group input {
     margin-top: 5px;
-    padding: 7px;
+    padding: 7px 0;
     width: 97%;
+    color: #f58d42;
+}
+
+
+.form-group .content-input {
+    padding: 25px 0;
 }
 
 .local-btn {
@@ -29,4 +35,25 @@
     padding: 15px 25px 15px 25px;
     border: none;
     border-radius: 0;
+}
+
+.post-container {
+    margin: auto;
+    margin-top: 50px;
+    width: 550px;
+    height: 200px;
+    background-color: #1F1F1F;
+    box-shadow: 10px 10px #f58d42;
+}
+
+.post-container h3 {
+    margin-left: 225px;
+    padding-top: 30px;
+    color: #f58d42;
+}
+
+.post-container p {
+    margin-left: 20px;
+    padding-top: 30px;
+    color: #fff;
 }

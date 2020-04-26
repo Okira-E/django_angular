@@ -10,6 +10,7 @@ from .seriaizers import UserSerializer, AuthTokenSerializer
 from .models import UserManager
 
 
+
 class CreateUserView(ObtainAuthToken):
     """Create Users"""
     def post(self, request, *args, **kwargs):
@@ -20,17 +21,11 @@ class CreateUserView(ObtainAuthToken):
         return Response({"token": token.key})
 
 
-class UpdateUserView(APIView):
-    authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = (permissions.IsAuthenticated,)
-    pass
-    # def post(self, request):
-    #     serializer = AuthTokenSerializer(data=request.data, context={'request': request})
-    #     serializer.is_valid(raise_exception=True)
-    #     user = serializer.validated_data['user']
-    #     serializer = UserSerializer(user, data=request.data)
-    #     user = serializer.save()
-    #     return user
+# class UpdateUserView(APIView):
+#     authentication_classes = (authentication.TokenAuthentication,)
+#     permission_classes = (permissions.IsAuthenticated,)
+#     pass
+
 
 
 class LoginUserView(ObtainAuthToken):

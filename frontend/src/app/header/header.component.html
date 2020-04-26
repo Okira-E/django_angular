@@ -1,8 +1,9 @@
 <div class="container">
   <ul>
-    <li routerLink="/"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a>Home</a></li>
-    <li routerLink="/login" routerLinkActive="active"><a>Login</a></li>
-    <li routerLink="/register" routerLinkActive="active"><a>Register</a></li>
-    <li routerLink="/account" routerLinkActive="active"><a>Account</a></li>
+    <li *ngIf="isAuthenticated" routerLink="/"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a>Home</a></li>
+    <li *ngIf="!isAuthenticated" routerLink="/login" routerLinkActive="active"><a>Login</a></li>
+    <li *ngIf="!isAuthenticated" routerLink="/register" routerLinkActive="active"><a>Register</a></li>
+    <li *ngIf="!isAuthenticated" routerLink="/account" routerLinkActive="active"><a>Account</a></li>
+    <li *ngIf="isAuthenticated" (click)="logout()"><a>Log Out</a></li>
   </ul>
 </div>
