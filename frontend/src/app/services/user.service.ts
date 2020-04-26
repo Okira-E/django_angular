@@ -113,7 +113,6 @@ export class UserService {
         this.isAuthenticated = true;
         this.authStatusListener.next(true);
         const duration: number = authHeader.expirationDate.getTime() - now.getTime();
-        console.log('Setting duration in local storage as: ' + duration);
         this.tokenTimer = setTimeout(() => {
             this.logout();
         }, duration);

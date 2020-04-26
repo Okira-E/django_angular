@@ -16,7 +16,7 @@ export class PostService {
 
   createPost(post: Post) {
     this.http.post(`${this.url}/api/posts/`, post)
-      .subscribe(res => console.log(res));
+      .subscribe();
   }
 
   listPosts() {
