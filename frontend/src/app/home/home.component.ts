@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { NgForm } from '@angular/forms';
 import { Post } from '../models/post.model';
-import { interval } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,19 +11,20 @@ import { interval } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   public posts: Post[];
+  public reachedLimitSub: Subscription;
   public reachedLimit: boolean = false;
+  public page: number = 1;
+  public currentPage: number = 1;
 
   constructor(private postService: PostService) { }
 
   ngOnInit(): void {
-    this.posts = this.postService.listPosts();
-    if (!this.reachedLimit) {
-      interval(500).subscribe(count => {
-        if (this.posts.length >= 2) {
-          this.reachedLimit = true;
-        }
-      })
-    }
+    this.posts = this.postService.listPosts(this.currentPage);
+    // this.postService.getReachedLimit().subscribe(bool => {
+    //   this.reachedLimit = bool;  
+    // })
+    console.log(this.posts);
+    // console.log(this.reachedLimit);
   }
 
   createPost(form: NgForm) {
@@ -36,5 +37,9 @@ export class HomeComponent implements OnInit {
     }
     this.postService.createPost(post);
     this.postService.listPosts();
+  }
+
+  changePage() {
+    this.currentPage++;
   }
 }

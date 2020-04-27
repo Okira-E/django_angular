@@ -65,3 +65,13 @@
     flex-wrap: wrap;
     margin-bottom: 40px;
 }
+
+.float-middle {
+    display: flex;
+    justify-content: center;
+}
+
+.float-middle button {
+    margin-bottom: 20px;
+    border: none;
+}

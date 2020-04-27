@@ -1,4 +1,4 @@
-from rest_framework import generics, mixins, authentication, permissions
+from rest_framework import generics, mixins, authentication, permissions, pagination
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -11,6 +11,7 @@ class PostAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateM
     serializer_class = PostSerializer
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
+    pagination_class = pagination.PageNumberPagination
     queryset = Post.objects.all()
 
     def get(self, request, *args, **kwargs):
