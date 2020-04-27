@@ -20,11 +20,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.posts = this.postService.listPosts(this.currentPage);
-    // this.postService.getReachedLimit().subscribe(bool => {
-    //   this.reachedLimit = bool;  
-    // })
+    this.postService.getReachedLimit().subscribe(bool => {
+      this.reachedLimit = bool;  
+    })
     console.log(this.posts);
-    // console.log(this.reachedLimit);
   }
 
   createPost(form: NgForm) {
@@ -40,6 +39,6 @@ export class HomeComponent implements OnInit {
   }
 
   changePage() {
-    this.currentPage++;
+    this.posts = this.postService.listPosts(++this.currentPage);
   }
 }

@@ -20,14 +20,21 @@ export class PostService {
   }
 
   listPosts(currentPage = 1) {
-    console.log("GET is sent");
     const queryString: string = `?page=${currentPage}`;
-    this.http.get<any>(`${this.url}/api/posts/`)
+    try {
+      this.http.get<any>(`${this.url}/api/posts/` + queryString)
       .subscribe(res => {             // [{title: "", content:""}, {title: "", content:""}]
         for (let i = 0; i < res.results.length; i++) {
           this.posts.push(res.results[i]);
+          if (this.posts.length >= 5) {
+            this.reachedLimitListener.next(true);
+          }
         }
       });
+    } catch {
+      this.reachedLimitListener.next(false);
+      return;
+    }
     return this.posts;
   }
 
