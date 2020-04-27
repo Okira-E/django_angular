@@ -21,20 +21,18 @@ export class PostService {
 
   listPosts(currentPage = 1) {
     const queryString: string = `?page=${currentPage}`;
-    try {
-      this.http.get<any>(`${this.url}/api/posts/` + queryString)
+    this.http.get<any>(`${this.url}/api/posts/` + queryString)
       .subscribe(res => {             // [{title: "", content:""}, {title: "", content:""}]
+        console.log(res);
         for (let i = 0; i < res.results.length; i++) {
           this.posts.push(res.results[i]);
-          if (this.posts.length >= 5) {
+          if (this.posts.length < res.count) {
             this.reachedLimitListener.next(true);
+          } else {
+            this.reachedLimitListener.next(false);
           }
         }
       });
-    } catch {
-      this.reachedLimitListener.next(false);
-      return;
-    }
     return this.posts;
   }
 
