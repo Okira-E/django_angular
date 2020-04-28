@@ -49,7 +49,7 @@ export class UserService {
       });
   }
 
-  loginUser(user: LoginUser) {
+  loginUser(user: LoginUser): void {
     this.http.post<{ token: string }>(`${this.url}/api/users/login/`, user)
       .subscribe(res => {
         this.token = res.token;
@@ -70,7 +70,7 @@ export class UserService {
       })
   }
 
-  logout() {
+  logout(): void {
     this.token = null;
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
@@ -79,12 +79,12 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  private saveTokenInLocalStorage(token, expirationDate: Date) {
+  private saveTokenInLocalStorage(token, expirationDate: Date): void {
     localStorage.setItem('token', token);
         localStorage.setItem('expiration', expirationDate.toISOString());
   }
 
-  private clearTokenInLocalStorage() {
+  private clearTokenInLocalStorage(): void {
     localStorage.removeItem('token');
         localStorage.removeItem('expiration');
   }

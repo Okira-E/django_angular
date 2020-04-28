@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../models/post.model';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,12 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  createPost(post: Post) {
+  createPost(post: Post): void {
     this.http.post(`${this.url}/api/posts/`, post)
       .subscribe();
   }
 
-  listPosts(currentPage = 1) {
+  listPosts(currentPage = 1): Post[] {
     const queryString: string = `?page=${currentPage}`;
     this.http.get<any>(`${this.url}/api/posts/` + queryString)
       .subscribe(res => {             // [{title: "", content:""}, {title: "", content:""}]
