@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { PostService } from '../services/post.service';
-import { NgForm } from '@angular/forms';
-import { Post } from '../models/post.model';
-import { Subscription } from 'rxjs';
+import {Component, OnInit, Input} from '@angular/core';
+import {PostService} from '../services/post.service';
+import {NgForm} from '@angular/forms';
+import {Post} from '../models/post.model';
 
 @Component({
   selector: 'app-home',
@@ -11,34 +10,38 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   public posts: Post[];
-  public reachedLimitSub: Subscription;
   public reachedLimit: boolean = false;
-  public page: number = 1;
   public currentPage: number = 1;
+  public isDeleted: boolean = false;
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService) {
+  }
 
   ngOnInit(): void {
     this.posts = this.postService.listPosts(this.currentPage);
     this.postService.getReachedLimit().subscribe(bool => {
-      this.reachedLimit = bool;  
-    })
-    console.log(this.posts);
+      this.reachedLimit = bool;
+    });
   }
 
-  createPost(form: NgForm) {
+  createPost(form: NgForm): void {
     if (!form.value.title || !form.value.content) {
       return;
     }
-    const post: Post = {
+    const post = {
       title: form.value.title,
       content: form.value.content
-    }
+    };
     this.postService.createPost(post);
-    this.postService.listPosts();
+    this.posts = this.postService.listPosts();
   }
 
-  changePage() {
+  changePage(): void {
     this.posts = this.postService.listPosts(++this.currentPage);
+  }
+
+  deletePost(post: Post): void {
+    this.postService.deletePost(post);
+    this.isDeleted = true;
   }
 }

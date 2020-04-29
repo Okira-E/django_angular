@@ -27,11 +27,11 @@ export class RegisterComponent implements OnInit {
     if (form.invalid) {
       return; // todo send a message to the user
     } else if (form.value.password !== form.value.password2) {
-      this.passwordError = "Both passwords must match!";
+      this.passwordError = 'Both passwords must match!';
       return;
     }
 
-    this.passwordError = "";
+    this.passwordError = '';
     this.userService.registerUser(user);
   }
 

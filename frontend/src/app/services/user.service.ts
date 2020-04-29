@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { LoginUser, RegisterUser } from '../models/user.model';
-import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {LoginUser, RegisterUser} from '../models/user.model';
+import {Subject} from 'rxjs';
+import {Router} from '@angular/router';
 
 
 @Injectable({
@@ -13,8 +13,9 @@ export class UserService {
   private token: string;
   private isAuthenticated: boolean = false;
   private authStatusListener = new Subject<boolean>();
-  private timeout: number = 2 * 24 * 60 * 60; // 2 days 
+  private timeout: number = 2 * 24 * 60 * 60; // 2 days
   private tokenTimer;
+
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -41,7 +42,7 @@ export class UserService {
           this.token = null;
           this.isAuthenticated = false;
           this.authStatusListener.next(false);
-          window.alert("Your session has expired, please sign in again");
+          window.alert('Your session has expired, please sign in again');
           this.logout();
           this.router.navigate(['/login']);
         }, this.timeout * 1000);
@@ -59,7 +60,7 @@ export class UserService {
           this.token = null;
           this.isAuthenticated = false;
           this.authStatusListener.next(false);
-          window.alert("Your session has expired, please sign in again");
+          window.alert('Your session has expired, please sign in again');
           this.logout();
           this.router.navigate(['/login']);
         }, this.timeout * 1000);
@@ -67,7 +68,7 @@ export class UserService {
         const expiration: Date = new Date(now.getTime() + (this.timeout * 1000));
         this.saveTokenInLocalStorage(this.token, expiration);
         this.router.navigate(['/']);
-      })
+      });
   }
 
   logout(): void {
@@ -81,42 +82,41 @@ export class UserService {
 
   private saveTokenInLocalStorage(token, expirationDate: Date): void {
     localStorage.setItem('token', token);
-        localStorage.setItem('expiration', expirationDate.toISOString());
+    localStorage.setItem('expiration', expirationDate.toISOString());
   }
 
   private clearTokenInLocalStorage(): void {
     localStorage.removeItem('token');
-        localStorage.removeItem('expiration');
+    localStorage.removeItem('expiration');
   }
 
   private getTokenFromLocalStorage() {
     const token: string = localStorage.getItem('token');
-        const expiration: string = localStorage.getItem('expiration');
-        if (!token || !expiration) {
-            return;
-        }
-        return {
-            token,
-            expirationDate: new Date(expiration)
-        };
+    const expiration: string = localStorage.getItem('expiration');
+    if (!token || !expiration) {
+      return;
+    }
+    return {
+      token,
+      expirationDate: new Date(expiration)
+    };
   }
 
   autoAuthUser() {
     const authHeader = this.getTokenFromLocalStorage();
     if (!authHeader) {
-        return;
+      return;
     }
     const now = new Date();
     const isValid = authHeader.expirationDate > now;
     if (isValid) {
-        this.token = authHeader.token;
-        this.isAuthenticated = true;
-        this.authStatusListener.next(true);
-        const duration: number = authHeader.expirationDate.getTime() - now.getTime();
-        this.tokenTimer = setTimeout(() => {
-            this.logout();
-        }, duration);
+      this.token = authHeader.token;
+      this.isAuthenticated = true;
+      this.authStatusListener.next(true);
+      const duration: number = authHeader.expirationDate.getTime() - now.getTime();
+      this.tokenTimer = setTimeout(() => {
+        this.logout();
+      }, duration);
     }
-}
-
+  }
 }

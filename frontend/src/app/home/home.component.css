@@ -60,6 +60,18 @@
     color: #fff;
 }
 
+.post-container button {
+  float: right;
+  margin-right: 20px;
+  color: #f58d42;
+  background: #1F1F1F;
+}
+
+.post-container button:hover {
+  color: #000;
+  background: #f58d42;
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
