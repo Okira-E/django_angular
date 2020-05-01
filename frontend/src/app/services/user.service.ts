@@ -46,6 +46,9 @@ export class UserService {
           this.logout();
           this.router.navigate(['/login']);
         }, this.timeout * 1000);
+        const now: Date = new Date();
+        const expiration: Date = new Date(now.getTime() + (this.timeout * 1000));
+        this.saveTokenInLocalStorage(this.token, expiration);
         this.router.navigate(['/']);
       });
   }

@@ -3,20 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="d2e35b7a-0b8b-494d-a821-c7b8e8029692" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/posts/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/posts/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/home.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/services/post.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/services/post.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -39,6 +45,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -75,7 +82,8 @@
       <workItem from="1587545925833" duration="17046000" />
       <workItem from="1587622481141" duration="15721000" />
       <workItem from="1587675712236" duration="26892000" />
-      <workItem from="1588079378533" duration="4665000" />
+      <workItem from="1588079378533" duration="6790000" />
+      <workItem from="1588246482221" duration="1462000" />
     </task>
     <servers />
   </component>
@@ -90,10 +98,11 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="555" y="201" width="802" height="679" key="#Inspections/0.0.1920.1080@0.0.1920.1080" timestamp="1587543774152" />
-    <state x="440" y="190" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587543822389">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="2502" y="182" width="802" height="679" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588152501603">
+      <screen x="0" y="0" width="3840" height="1055" />
     </state>
     <state x="440" y="190" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1587543822389" />
+    <state x="2502" y="182" width="802" height="679" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3840.1055@0.0.3840.1055" timestamp="1588152501603" />
     <state x="2658" y="300" width="426" height="486" key="FileChooserDialogImpl" timestamp="1587626904012">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
