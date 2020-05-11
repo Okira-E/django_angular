@@ -5,10 +5,11 @@ from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from rest_framework.authtoken.views import ObtainAuthToken
 
-from .seriaizers import UserSerializer, AuthTokenSerializer
+from .models import User
+from .serializers import UserSerializer, AuthTokenSerializer
 
 
-class CreateUserView(generics.CreateAPIView, ObtainAuthToken):
+class CreateUserView(generics.GenericAPIView, ObtainAuthToken):
     """Create Users"""
     def post(self, request, *args, **kwargs):
         serializer = UserSerializer(data=request.data, context={'request': request})
@@ -17,14 +18,23 @@ class CreateUserView(generics.CreateAPIView, ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         return Response({"token": token.key}, status=201)
 
+class UpdateUserView(generics.UpdateAPIView):
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = UserSerializer
+    lookup_field = 'id'
+    queryset = User.objects.all()
+
 
 class LoginUserView(ObtainAuthToken):
     """Login Users"""
     def post(self, request, *args, **kwargs):
         serializer = AuthTokenSerializer(data=request.data, context={'request': request})
-        serializer.is_valid()
-        user = serializer.validated_data['user']
-        if user:
-            token, created = Token.objects.get_or_create(user=user)
-            return Response({"token": token.key})
-        return Response(status=404)
+        serializer.is_valid(raise_exception=False)
+        try:
+            user = serializer.validated_data['user']
+            if user:
+                token, created = Token.objects.get_or_create(user=user)
+                return Response({"token": token.key})
+        except KeyError:
+            return Response(status=401)

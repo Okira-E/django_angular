@@ -6,7 +6,7 @@ from . import models
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
-    list_display = ['email', 'first_name']
+    list_display = ['id', 'email', 'first_name']
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         (_('Personal Info'), {'fields': ('first_name','last_name')}),

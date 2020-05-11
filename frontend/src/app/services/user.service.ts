@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {LoginUser, RegisterUser} from '../models/user.model';
-import {Subject} from 'rxjs';
+import {Subject, throwError} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
 
@@ -55,7 +56,7 @@ export class UserService {
 
   loginUser(user: LoginUser): void {
     this.http.post<{ token: string }>(`${this.url}/api/users/login/`, user)
-      .subscribe(res => {
+      .subscribe((res: {token: string}) => {
         this.token = res.token;
         this.isAuthenticated = true;
         this.authStatusListener.next(true);
