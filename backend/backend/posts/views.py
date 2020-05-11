@@ -14,11 +14,12 @@ class PostAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateM
     pagination_class = pagination.PageNumberPagination
     queryset = Post.objects.all()
 
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+        
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
-    def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
@@ -28,8 +29,8 @@ class PostAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateM
 
 
 # /api/posts/{id}
-class DetailedPostAPIView(generics.GenericAPIView, 
-                    mixins.UpdateModelMixin, 
+class DetailedPostAPIView(generics.GenericAPIView,
+                    mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
                     mixins.RetrieveModelMixin):
     serializer_class = PostSerializer
@@ -50,7 +51,3 @@ class DetailedPostAPIView(generics.GenericAPIView,
     # lets me delete other's posts
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
-
-
-
-
