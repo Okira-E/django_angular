@@ -48,7 +48,7 @@ export class UserService {
         }, this.timeout * 1000);
         const now: Date = new Date();
         const expiration: Date = new Date(now.getTime() + (this.timeout * 1000));
-        this.saveTokenInLocalStorage(this.token, expiration);
+        UserService.saveTokenInLocalStorage(this.token, expiration);
         this.router.navigate(['/']);
       });
   }
@@ -69,7 +69,7 @@ export class UserService {
         }, this.timeout * 1000);
         const now: Date = new Date();
         const expiration: Date = new Date(now.getTime() + (this.timeout * 1000));
-        this.saveTokenInLocalStorage(this.token, expiration);
+        UserService.saveTokenInLocalStorage(this.token, expiration);
         this.router.navigate(['/']);
       });
   }
@@ -78,22 +78,22 @@ export class UserService {
     this.token = null;
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
-    this.clearTokenInLocalStorage();
+    UserService.clearTokenInLocalStorage();
     clearTimeout(this.tokenTimer);
     this.router.navigate(['/login']);
   }
 
-  private saveTokenInLocalStorage(token, expirationDate: Date): void {
+  private static saveTokenInLocalStorage(token, expirationDate: Date): void {
     localStorage.setItem('token', token);
     localStorage.setItem('expiration', expirationDate.toISOString());
   }
 
-  private clearTokenInLocalStorage(): void {
+  private static clearTokenInLocalStorage(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
   }
 
-  private getTokenFromLocalStorage() {
+  private static getTokenFromLocalStorage() {
     const token: string = localStorage.getItem('token');
     const expiration: string = localStorage.getItem('expiration');
     if (!token || !expiration) {
@@ -106,7 +106,7 @@ export class UserService {
   }
 
   autoAuthUser() {
-    const authHeader = this.getTokenFromLocalStorage();
+    const authHeader = UserService.getTokenFromLocalStorage();
     if (!authHeader) {
       return;
     }
