@@ -8,6 +8,7 @@ from .serializers import PostSerializer
 
 # /api/posts/
 class PostAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin):
+    """Create or list the posts depending on the context of the request"""
     serializer_class = PostSerializer
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
@@ -19,7 +20,6 @@ class PostAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateM
         
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
-
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)

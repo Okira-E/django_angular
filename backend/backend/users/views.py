@@ -20,7 +20,9 @@ class CreateUserView(generics.GenericAPIView, ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         return Response({"token": token.key}, status=201)
 
+
 class UpdateUserView(generics.UpdateAPIView):
+    """Update Users"""
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = UserSerializer
