@@ -15,6 +15,8 @@ class CreateUserView(generics.GenericAPIView, ObtainAuthToken):
         serializer = UserSerializer(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
+        user.set_password(request.data.get("password"))
+        user = serializer.save()
         token, created = Token.objects.get_or_create(user=user)
         return Response({"token": token.key}, status=201)
 

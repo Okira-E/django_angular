@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"/home/okira/Desktop/projects/django_angular/backend2/venv"
+$VIRTUAL_ENV = r"/home/okira/Desktop/code/projects/django_angular/backend/venv"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]

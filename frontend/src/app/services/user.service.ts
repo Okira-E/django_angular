@@ -16,8 +16,29 @@ export class UserService {
   private timeout: number = 2 * 24 * 60 * 60; // 2 days
   private tokenTimer;
 
-
   constructor(private http: HttpClient, private router: Router) {
+  }
+
+  private static saveTokenInLocalStorage(token, expirationDate: Date): void {
+    localStorage.setItem('token', token);
+    localStorage.setItem('expiration', expirationDate.toISOString());
+  }
+
+  private static clearTokenInLocalStorage(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiration');
+  }
+
+  private static getTokenFromLocalStorage() {
+    const token: string = localStorage.getItem('token');
+    const expiration: string = localStorage.getItem('expiration');
+    if (!token || !expiration) {
+      return;
+    }
+    return {
+      token,
+      expirationDate: new Date(expiration)
+    };
   }
 
   getToken() {
@@ -83,27 +104,6 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  private static saveTokenInLocalStorage(token, expirationDate: Date): void {
-    localStorage.setItem('token', token);
-    localStorage.setItem('expiration', expirationDate.toISOString());
-  }
-
-  private static clearTokenInLocalStorage(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expiration');
-  }
-
-  private static getTokenFromLocalStorage() {
-    const token: string = localStorage.getItem('token');
-    const expiration: string = localStorage.getItem('expiration');
-    if (!token || !expiration) {
-      return;
-    }
-    return {
-      token,
-      expirationDate: new Date(expiration)
-    };
-  }
 
   autoAuthUser() {
     const authHeader = UserService.getTokenFromLocalStorage();

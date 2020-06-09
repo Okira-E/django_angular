@@ -25,7 +25,10 @@ SECRET_KEY = 'gt9v_tv$*lx@se4qv^!=$#4fv@bs^t6p!9&&l@!gn%kq!!_5sw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0"]
+ALLOWED_HOSTS = [
+    "0.0.0.0",
+    "http://django-api.eba-juuajpks.us-west-2.elasticbeanstalk.com/",
+]
 
 
 # Application definition

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../models/post.model';
-import { Subject, Observable } from 'rxjs';
+import { Subject} from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
@@ -37,7 +37,7 @@ export class PostService {
 
 	deletePost(post: Post) {
 		const id: string = post.id;
-		this.http.delete(`${this.url}/api/posts/` + id + '/').subscribe();
+		this.http.delete(`${this.url}/api/posts/${id}/`).subscribe();
 	}
 
 	getReachedLimit() {
