@@ -1,5 +1,5 @@
 FROM python:3.7-alpine
-MAINTAINER okira
+LABEL author=okira
 
 ENV PYTHONUNBUFFERED 1
 
