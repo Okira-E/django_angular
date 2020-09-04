@@ -1,12 +1,11 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {LoginUser, RegisterUser} from '../models/user.model';
-import {Subject} from 'rxjs';
-import {Router} from '@angular/router';
-
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { LoginUser, RegisterUser } from '../models/user.model';
+import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   private url: string = 'http://0.0.0.0:8000';
@@ -16,8 +15,7 @@ export class UserService {
   private timeout: number = 2 * 24 * 60 * 60; // 2 days
   private tokenTimer;
 
-  constructor(private http: HttpClient, private router: Router) {
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   private static saveTokenInLocalStorage(token, expirationDate: Date): void {
     localStorage.setItem('token', token);
@@ -37,7 +35,7 @@ export class UserService {
     }
     return {
       token,
-      expirationDate: new Date(expiration)
+      expirationDate: new Date(expiration),
     };
   }
 
@@ -54,12 +52,13 @@ export class UserService {
   }
 
   registerUser(user: RegisterUser) {
-    this.http.post<{ token: string }>(`${this.url}/api/users/register/`, user)
-      .subscribe(res => {
+    this.http
+      .post<{ token: string }>(`${this.url}/api/users/register/`, user)
+      .subscribe((res) => {
         this.token = res.token;
         this.isAuthenticated = true;
         this.authStatusListener.next(true);
-        this.tokenTimer = setTimeout(i => {
+        this.tokenTimer = setTimeout((i) => {
           this.token = null;
           this.isAuthenticated = false;
           this.authStatusListener.next(false);
@@ -68,19 +67,20 @@ export class UserService {
           this.router.navigate(['/login']);
         }, this.timeout * 1000);
         const now: Date = new Date();
-        const expiration: Date = new Date(now.getTime() + (this.timeout * 1000));
+        const expiration: Date = new Date(now.getTime() + this.timeout * 1000);
         UserService.saveTokenInLocalStorage(this.token, expiration);
         this.router.navigate(['/']);
       });
   }
 
   loginUser(user: LoginUser): void {
-    this.http.post<{ token: string }>(`${this.url}/api/users/login/`, user)
-      .subscribe((res: {token: string}) => {
+    this.http
+      .post<{ token: string }>(`${this.url}/api/users/login/`, user)
+      .subscribe((res: { token: string }) => {
         this.token = res.token;
         this.isAuthenticated = true;
         this.authStatusListener.next(true);
-        this.tokenTimer = setTimeout(i => {
+        this.tokenTimer = setTimeout((i) => {
           this.token = null;
           this.isAuthenticated = false;
           this.authStatusListener.next(false);
@@ -89,7 +89,7 @@ export class UserService {
           this.router.navigate(['/login']);
         }, this.timeout * 1000);
         const now: Date = new Date();
-        const expiration: Date = new Date(now.getTime() + (this.timeout * 1000));
+        const expiration: Date = new Date(now.getTime() + this.timeout * 1000);
         UserService.saveTokenInLocalStorage(this.token, expiration);
         this.router.navigate(['/']);
       });
@@ -104,7 +104,6 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-
   autoAuthUser() {
     const authHeader = UserService.getTokenFromLocalStorage();
     if (!authHeader) {
@@ -116,7 +115,8 @@ export class UserService {
       this.token = authHeader.token;
       this.isAuthenticated = true;
       this.authStatusListener.next(true);
-      const duration: number = authHeader.expirationDate.getTime() - now.getTime();
+      const duration: number =
+        authHeader.expirationDate.getTime() - now.getTime();
       this.tokenTimer = setTimeout(() => {
         this.logout();
       }, duration);
